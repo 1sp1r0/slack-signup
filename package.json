@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jumbosushi/slack-signup#readme",
   "dependencies": {
+    "jasmine-node": "^1.14.5",
     "request": "^2.69.0"
   }
 }
