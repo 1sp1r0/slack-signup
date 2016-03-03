@@ -1,0 +1,19 @@
+{
+  "name": "slack-signup",
+  "version": "1.0.0",
+  "description": "Online slack signup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jumbosushi/slack-signup.git"
+  },
+  "author": "Atsushi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jumbosushi/slack-signup/issues"
+  },
+  "homepage": "https://github.com/jumbosushi/slack-signup#readme"
+}
