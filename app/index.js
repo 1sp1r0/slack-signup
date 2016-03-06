@@ -36,6 +36,8 @@ var typeform_json = http.request(typeform_url, funtion(res) {
   }
 });
 
+// Start The routing for submitting typeform info to slack
+
 app.get('/', function (req, res) {
     res.status(200).send('Hello World!')
 });
