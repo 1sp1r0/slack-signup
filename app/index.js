@@ -20,9 +20,13 @@ var curr_time = (new Date).getTime().toString(); // current time in epoche
 var slack_url = slack_teamname + slack_api_1 + curr_time;
 
 // slack user info
-var first_name;
-var email;
+function user(first, email) {
+  this.first_name = first;
+  this.email = email;
+}
 
+// array to hold all the new invites (will be cleared)
+var new_invites = [];
 
 var typeform_json = http.request(typeform_url, funtion(res) {
   var tf_json_stringify = JSON.stringify(res);
@@ -30,9 +34,11 @@ var typeform_json = http.request(typeform_url, funtion(res) {
   var tf_res = tf_json.responses;
   var res_length = Object.keys(tf_res).length;
   for (var i=0; i < res_length; i++) {
-    first_name = tf_res[i].answers["textfield_18214586"];
-    email = tf_res[i].answers["email_18214588"];
-    console.log(first_name);
+    var new_user = new user();
+    new_user.first_name = tf_res[i].answers["textfield_18214586"];
+    new_user.email = tf_res[i].answers["email_18214588"];
+    new_invites.push();
+    console.log(new_user.first_name); // test
   }
 });
 
