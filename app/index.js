@@ -76,6 +76,7 @@ exports.send_invites = function(req, res) {
 app.get('/tf', exports.parse_typeform);
 
 //routing for submitting invites
+// not posting as of now :/
 app.post('/invite', exports.send_invites);
 
 
