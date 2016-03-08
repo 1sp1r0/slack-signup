@@ -19,6 +19,9 @@ var slack_api_1 = "/api/users.admin.invite?t="
 var curr_time = (new Date).getTime().toString(); // current time in epoche
 var slack_url = slack_teamname + slack_api_1 + curr_time;
 
+// slack API token (get yours at https://api.slack.com/docs/oauth-test-tokens)
+var slack_invite_token = "xoxp-22114508481-22108923172-23857668930-177a0526cd";
+
 // slack user info
 function user(first, email) {
   this.first_name = first;
