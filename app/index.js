@@ -1,4 +1,4 @@
-var http = require('http');
+var http = require('https');
 var express = require('express');
 var bodyParser = require('body-parser');
 var $ = require('jQuery');
@@ -35,7 +35,7 @@ function user(first, email) {
 var new_invites = [];
 
 exports.parse_typeform = function() {
-  http.request(typeform_url, funtion(res) {
+  http.request(typeform_url, (res) => {
     var tf_json_stringify = JSON.stringify(res);
     var tf_json = JSON.parse(tf_api_json_stringify);
     var tf_res = tf_json.responses;
@@ -52,14 +52,14 @@ exports.parse_typeform = function() {
 
 // send invites to users in new_invites array
 exports.send_invites = function() {
-  for (var u in new_invites) {
+  for (signup of new_invites) {
     curr_time = (new Date).getTime().toString(); // current time in epoche
     $.ajax({
       url: slack_url + curr_time,
       data: {
-        email: u.email,
+        email: signup.email,
         channels: "C0N39LW3V", //YOUR CHANNEL
-        first_name: u.first_name,
+        first_name: signup.first_name,
         token: slack_invite_token,
         _attempts: 1
       },
