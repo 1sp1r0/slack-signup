@@ -16,7 +16,7 @@ I will make a node version of slack-typeform signup web app
 Found a bug? Please create an issue here on GitHub!
 
 # License
-Released under the [MIT license](https://github.com/jumbosushi/Go-Outside/blob/master/LICENSE.md)
+Released under the [MIT license](https://github.com/jumbosushi/slack-signup/blob/master/LICENCE)
 
 # Todo
 1. Find out how to make POST request @ L79
