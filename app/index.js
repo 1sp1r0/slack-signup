@@ -46,8 +46,8 @@ exports.parse_typeform = function() {
       new_user.email = tf_res[i].answers["email_18214588"];
       new_invites.push();
       console.log(new_user.first_name); // test
-    })
-  }
+    }
+  })
 };
 
 // send invites to users in new_invites array
