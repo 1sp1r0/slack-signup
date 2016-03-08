@@ -28,7 +28,7 @@ function user(first, email) {
 // array to hold all the new invites (will be cleared)
 var new_invites = [];
 
-var typeform_json = http.request(typeform_url, funtion(res) {
+var parse_typeform = http.request(typeform_url, funtion(res) {
   var tf_json_stringify = JSON.stringify(res);
   var tf_json = JSON.parse(tf_api_json_stringify);
   var tf_res = tf_json.responses;
