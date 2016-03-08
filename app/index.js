@@ -5,6 +5,10 @@ var $ = require('jQuery');
 
 var app = express();
 
+// time variables
+var curr_time = "1457404271"; //example epoche time
+var last_invites_sent = "1457404271";
+
 // Typefrom urls
 var typeform_api_1 = "https://api.typeform.com/v0/form/"
 var typeform_form_key = "gUl2lY"; // YOUR FORM KEY
@@ -16,8 +20,7 @@ var typeform_url = typeform_api_1 + typeform_form_key +
 // Slack API url
 var slack_teamname = "https://ssushi-clarifaiapi.slack.com" // YOUR TEAM URL
 var slack_api_1 = "/api/users.admin.invite?t="
-var curr_time = (new Date).getTime().toString(); // current time in epoche
-var slack_url = slack_teamname + slack_api_1 + curr_time;
+var slack_url = slack_teamname + slack_api_1;
 
 // slack API token (get yours at https://api.slack.com/docs/oauth-test-tokens)
 var slack_invite_token = "xoxp-22114508481-22108923172-23857668930-177a0526cd";
@@ -50,8 +53,9 @@ var parse_typeform = function() {
 // send invites to users in new_invites array
 var send_invites = function() {
   for (var u in new_invites) {
+    curr_time = (new Date).getTime().toString(); // current time in epoche
     $.ajax({
-      url: slack_url,
+      url: slack_url + curr_time,
       data: {
         email: u.email,
         channels: "C0N39LW3V", //YOUR CHANNEL
@@ -62,7 +66,8 @@ var send_invites = function() {
       error: console.log("Ajax failed :("),
       success: console.log("Successful Ajax :)")
     })
-  }
+  };
+  last_invites_sent = curr_time;
 };
 
 // Start The routing for submitting typeform info to slack
