@@ -31,19 +31,39 @@ function user(first, email) {
 // array to hold all the new invites (will be cleared)
 var new_invites = [];
 
-var parse_typeform = http.request(typeform_url, funtion(res) {
-  var tf_json_stringify = JSON.stringify(res);
-  var tf_json = JSON.parse(tf_api_json_stringify);
-  var tf_res = tf_json.responses;
-  var res_length = Object.keys(tf_res).length;
-  for (var i=0; i < res_length; i++) {
-    var new_user = new user();
-    new_user.first_name = tf_res[i].answers["textfield_18214586"];
-    new_user.email = tf_res[i].answers["email_18214588"];
-    new_invites.push();
-    console.log(new_user.first_name); // test
+var parse_typeform = function() {
+  http.request(typeform_url, funtion(res) {
+    var tf_json_stringify = JSON.stringify(res);
+    var tf_json = JSON.parse(tf_api_json_stringify);
+    var tf_res = tf_json.responses;
+    var res_length = Object.keys(tf_res).length;
+    for (var i=0; i < res_length; i++) {
+      var new_user = new user();
+      new_user.first_name = tf_res[i].answers["textfield_18214586"];
+      new_user.email = tf_res[i].answers["email_18214588"];
+      new_invites.push();
+      console.log(new_user.first_name); // test
+    })
   }
-});
+};
+
+// send invites to users in new_invites array
+var send_invites = function() {
+  for (var u in new_invites) {
+    $.ajax({
+      url: slack_url,
+      data: {
+        email: u.email,
+        channels: "C0N39LW3V", //YOUR CHANNEL
+        first_name: u.first_name,
+        token: slack_invite_token,
+        _attempts: 1
+      },
+      error: console.log("Ajax failed :("),
+      success: console.log("Successful Ajax :)")
+    })
+  }
+};
 
 // Start The routing for submitting typeform info to slack
 
