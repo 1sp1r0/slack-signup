@@ -34,7 +34,7 @@ function user(first, email) {
 // array to hold all the new invites (will be cleared)
 var new_invites = [];
 
-exports.parse_typeform = function(req, res) {
+function parse_typeform(req, res) {
   http.request(typeform_url, (res) => {
     var tf_json_stringify = JSON.stringify(res);
     var tf_json = JSON.parse(tf_api_json_stringify);
@@ -48,14 +48,16 @@ exports.parse_typeform = function(req, res) {
       console.log(new_user.first_name); // test
     }
   });
+  send_invites();
   res.send("Parsed Typeform!");
 };
 
 // send invites to users in new_invites array
-exports.send_invites = function(req, res) {
+function send_invites() {
   for (signup of new_invites) {
     curr_time = (new Date).getTime().toString(); // current time in epoche
     $.ajax({
+      method: "POST",
       url: slack_url + curr_time,
       data: {
         email: signup.email,
@@ -69,15 +71,10 @@ exports.send_invites = function(req, res) {
     })
   };
   last_invites_sent = curr_time;
-  res.send("Invites send!");
 };
 
 // routing for parsing typeform
-app.get('/tf', exports.parse_typeform);
-
-//routing for submitting invites
-// not posting as of now :/
-app.post('/invite', exports.send_invites);
+app.get('/tf', parse_typeform);
 
 
 app.get('/', function (req, res) {
