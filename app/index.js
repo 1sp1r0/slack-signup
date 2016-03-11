@@ -2,6 +2,7 @@ var http = require('https');
 var express = require('express');
 var bodyParser = require('body-parser');
 var $ = require('jQuery');
+var request = require('request');
 
 var app = express();
 
@@ -35,25 +36,27 @@ function user(first, email) {
 var new_invites = [];
 
 function parse_typeform(req, res) {
-  http.request(typeform_url, (res) => {
-    var tf_json_stringify = JSON.stringify(res);
-    var tf_json = JSON.parse(tf_api_json_stringify);
-    var tf_res = tf_json.responses;
+  request(typeform_url, function(err, res, body) {
+    var tf_json_text = JSON.stringify(body);
+    var tf_json = JSON.parse(tf_json_text);
+    var tf_obj = JSON.parse(tf_json);
+    var tf_res = tf_obj.responses;
     var res_length = Object.keys(tf_res).length;
     for (var i=0; i < res_length; i++) {
       var new_user = new user();
       new_user.first_name = tf_res[i].answers["textfield_18214586"];
       new_user.email = tf_res[i].answers["email_18214588"];
-      new_invites.push();
-      console.log(new_user.first_name); // test
-    }
+      new_invites.push(new_user);
+    };
+    console.log(new_invites); // test
+    send_invites();
   });
-  send_invites();
   res.send("Parsed Typeform!");
 };
 
 // send invites to users in new_invites array
 function send_invites() {
+  console.log("Invites being send!");
   for (signup of new_invites) {
     curr_time = (new Date).getTime().toString(); // current time in epoche
     $.ajax({
