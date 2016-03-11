@@ -7,8 +7,10 @@ var request = require('request');
 var app = express();
 
 // time variables
-var curr_time = "1457404271"; //example epoche time
-var last_invites_sent = "1457404271";
+// Invtes will be send every 30 minutes + 1 min considering possible Heroku glitch
+var curr_time = new Date();
+var 30_min_ago = curr_time.setMinutes(new Date().getMinutes()-31));
+var last_invites_sent = undefined; //need - 8 hours - 30 min for tf API
 
 // Typefrom urls
 var typeform_api_1 = "https://api.typeform.com/v0/form/"
@@ -68,10 +70,10 @@ function send_invites() {
         first_name: signup.first_name,
         token: slack_invite_token,
         _attempts: 1
-      },
-      error: console.log("Ajax failed :("),
-      success: console.log("Successful Ajax :)")
+      }
     })
+    .done(function () { console.log("sucess") })
+    .fail(function () { console.log("failed :(") })
   };
   last_invites_sent = curr_time;
 };
