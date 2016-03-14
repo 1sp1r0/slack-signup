@@ -1,18 +1,40 @@
-var http = require('https');
-var express = require('express');
+var http       = require('https');
+var express    = require('express');
 var bodyParser = require('body-parser');
-var $ = require('jQuery');
-var request = require('request');
-
+var $          = require('jQuery');
+var request    = require('request');
 var app = express();
 
-// ---------------------------
+// -----------------------------
+// Routing
 
-// time variables
+// routing for parsing typeform
+app.get('/tf', parse_typeform);
+
+// Landing url
+app.get('/', function (req, res) {
+    res.status(200).send('Slack-Signup is live!')
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(400).send(err.message);
+});
+
+// listen
+app.listen(3000, function () {
+  console.log('App listening on port 3000!');
+});
+
+// ---------------------------
+// API url variables
+
+// Time variables
 // Invites will be send every 30 minutes + 1 min considering possible Heroku glitch
-var curr_time = new Date();
-var offset = new Date().getTimezoneOffset();
-var gmt_time = curr_time.setMinutes(new Date().getMinutes() - offset);
+var curr_time    = new Date();
+var offset       = new Date().getTimezoneOffset();
+var gmt_time     = curr_time.setMinutes(new Date().getMinutes() - offset);
 var gmt_time_obj = new Date(gmt_time);
 var last_invites_sent = gmt_time_obj.setMinutes(new Date().getMinutes() - 31);
 
@@ -33,22 +55,27 @@ var slack_url = slack_teamname + slack_api_1;
 // slack API token (get yours at https://api.slack.com/docs/oauth-test-tokens)
 var slack_invite_token = "xoxp-22114508481-22108923172-23857668930-177a0526cd";
 
-// slack user info
+// array to hold all the new invites (will be cleared)
+var new_invites = [];
+
+// ------------------
+// Function definitions
+
+// For storing slack user info
 function user(first, email) {
   this.first_name = first;
   this.email = email;
 }
 
-// array to hold all the new invites (will be cleared)
-var new_invites = [];
-
+// Call GET to Typeform API
+// & Retrieve signups from the last 30 mins
 function parse_typeform(req, res) {
   request(typeform_url, function(err, res, body) {
     var tf_json_text = JSON.stringify(body);
-    var tf_json = JSON.parse(tf_json_text);
-    var tf_obj = JSON.parse(tf_json);
-    var tf_res = tf_obj.responses;
-    var res_length = Object.keys(tf_res).length;
+    var tf_json      = JSON.parse(tf_json_text);
+    var tf_obj       = JSON.parse(tf_json);
+    var tf_res       = tf_obj.responses;
+    var res_length   = Object.keys(tf_res).length;
     for (var i=0; i < res_length; i++) {
       var new_user = new user();
       new_user.first_name = tf_res[i].answers["textfield_18214586"];
@@ -61,7 +88,8 @@ function parse_typeform(req, res) {
   res.send("Parsed Typeform!");
 };
 
-// send invites to users in new_invites array
+// Call POST to Typeform API
+// Send invites to users in new_invites array
 function send_invites() {
   console.log("Invites being send!");
   for (signup of new_invites) {
@@ -82,21 +110,3 @@ function send_invites() {
   };
   last_invites_sent = curr_time;
 };
-
-// routing for parsing typeform
-app.get('/tf', parse_typeform);
-
-
-app.get('/', function (req, res) {
-    res.status(200).send('Slack-Signup is live!')
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    res.status(400).send(err.message);
-});
-
-app.listen(3000, function () {
-  console.log('App listening on port 3000!');
-});
