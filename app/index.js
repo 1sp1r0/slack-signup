@@ -88,7 +88,7 @@ function parse_typeform(req, res) {
   res.send("Parsed Typeform!");
 };
 
-// Call POST to Typeform API
+// Call POST to Slack API
 // Send invites to users in new_invites array
 function send_invites() {
   console.log("Invites being send!");
