@@ -6,11 +6,16 @@ var request = require('request');
 
 var app = express();
 
+// ---------------------------
+
 // time variables
-// Invtes will be send every 30 minutes + 1 min considering possible Heroku glitch
+// Invites will be send every 30 minutes + 1 min considering possible Heroku glitch
 var curr_time = new Date();
-var 30_min_ago = curr_time.setMinutes(new Date().getMinutes()-31));
-var last_invites_sent = undefined; //need - 8 hours - 30 min for tf API
+var offset = new Date().getTimezoneOffset();
+var gmt_time = curr_time.setMinutes(new Date().getMinutes() - offset);
+console.log(gmt_time);
+var gmt_time_obj = new Date(gmt_time);
+var last_invites_sent = gmt_time_obj.setMinutes(new Date().getMinutes() - 31);
 
 // Typefrom urls
 var typeform_api_1 = "https://api.typeform.com/v0/form/"
