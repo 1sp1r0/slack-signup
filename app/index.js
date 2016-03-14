@@ -13,17 +13,17 @@ var app = express();
 var curr_time = new Date();
 var offset = new Date().getTimezoneOffset();
 var gmt_time = curr_time.setMinutes(new Date().getMinutes() - offset);
-console.log(gmt_time);
 var gmt_time_obj = new Date(gmt_time);
 var last_invites_sent = gmt_time_obj.setMinutes(new Date().getMinutes() - 31);
 
 // Typefrom urls
-var typeform_api_1 = "https://api.typeform.com/v0/form/"
-var typeform_form_key = "gUl2lY"; // YOUR FORM KEY
-var typeform_key = "?key=c715b7dacbe3548df13672b5066f9d2b1080201b"; // YOUR API KEY
-var typeform_api_2 = "&completed=true&offset=0";
-var typeform_url = typeform_api_1 + typeform_form_key +
-                   typeform_key + typeform_api_2;
+var tf_link      = "https://api.typeform.com/v0/form/"
+var tf_form_key  = "gUl2lY"; // YOUR FORM KEY
+var tf_api_key   = "?key=c715b7dacbe3548df13672b5066f9d2b1080201b"; // YOUR API KEY
+var tf_options   = "&completed=true&offset=0";
+var tf_since     = "&since=" + last_invites_sent.toString();
+var typeform_url = tf_link     + tf_form_key + tf_api_key +
+                   tf_options  + tf_since;
 
 // Slack API url
 var slack_teamname = "https://ssushi-clarifaiapi.slack.com" // YOUR TEAM URL
