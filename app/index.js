@@ -27,7 +27,7 @@ app.listen(3000, function () {
   console.log('App listening on port 3000!');
 });
 
-// ---------------------------
+// --------------------------------
 // API url variables
 
 // Time variables
@@ -43,7 +43,7 @@ var tf_link      = "https://api.typeform.com/v0/form/"
 var tf_form_key  = "gUl2lY"; // YOUR FORM KEY
 var tf_api_key   = "?key=c715b7dacbe3548df13672b5066f9d2b1080201b"; // YOUR API KEY
 var tf_options   = "&completed=true&offset=0";
-var tf_since     = "&since=" + last_invites_sent.toString();
+var tf_since     = "&since=" + last_invites_sent.toString().substring(0,10);
 var typeform_url = tf_link     + tf_form_key + tf_api_key +
                    tf_options  + tf_since;
 
@@ -58,7 +58,7 @@ var slack_invite_token = "xoxp-22114508481-22108923172-23857668930-177a0526cd";
 // array to hold all the new invites (will be cleared)
 var new_invites = [];
 
-// ------------------
+// -------------------------------------
 // Function definitions
 
 // For storing slack user info
