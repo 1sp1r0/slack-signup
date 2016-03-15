@@ -2,7 +2,8 @@
   "name": "slack-signup",
   "version": "1.0.0",
   "engines": {
-   "node": "4.2.4"
+   "node": "4.2.4",
+   "npm": "4.14.x"  
   },
   "description": "Online slack signup",
   "main": "index.js",
