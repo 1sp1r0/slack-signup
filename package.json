@@ -1,6 +1,9 @@
 {
   "name": "slack-signup",
   "version": "1.0.0",
+  "engines": {
+   "node": "4.2.4"
+  },
   "description": "Online slack signup",
   "main": "index.js",
   "scripts": {
@@ -17,6 +20,7 @@
   },
   "homepage": "https://github.com/jumbosushi/slack-signup#readme",
   "dependencies": {
+    "jQuery": "^1.7.4",
     "jasmine-node": "^1.14.5",
     "request": "^2.69.0"
   }
