@@ -1,7 +1,7 @@
 var http       = require('https');
 var express    = require('express');
 var bodyParser = require('body-parser');
-var $          = require('jQuery');
+var $          = require('jquery');
 var request    = require('request');
 var app = express();
 
