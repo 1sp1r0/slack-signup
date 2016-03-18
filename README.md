@@ -1,11 +1,12 @@
 # slack-signup
+[![BuildStatus](https://travis-ci.org/jumbosushi/slack-signup.svg?branch=master)](https://travis-ci.org/jumbosushi/slack-signup)
+
 Online signup page for [Slack](https://slack.com/) via [Typeform](https://www.typeform.com/)!
 
 Inspired by https://levels.io/slack-typeform-auto-invite-sign-ups/
 
 I will make a node version of slack-typeform signup web app
 
-[![BuildStatus](https://travis-ci.org/jumbosushi/slack-signup.svg?branch=master)](https://travis-ci.org/jumbosushi/slack-signup)
 
 # Table of Contents
 1. [Usage](#usage)
