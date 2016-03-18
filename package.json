@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
    "node": "4.2.4",
-   "npm": "4.14.x"  
+   "npm": "4.14.x"
   },
   "description": "Online slack signup",
   "main": "index.js",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/jumbosushi/slack-signup#readme",
   "dependencies": {
-    "jQuery": "^1.7.4",
+    "jquery": "2.2.2",
     "jasmine-node": "^1.14.5",
     "request": "^2.69.0"
   }
