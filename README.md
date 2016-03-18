@@ -5,6 +5,9 @@ Inspired by https://levels.io/slack-typeform-auto-invite-sign-ups/
 
 I will make a node version of slack-typeform signup web app
 
+### Status
+[![BuildStatus](https://travis-ci.org/jumbosushi/slack-signup.svg?branch=master)](https://travis-ci.org/jumbosushi/slack-signup)
+
 # Table of Contents
 1. [Usage](#usage)
 2. [Installation](#installation)
