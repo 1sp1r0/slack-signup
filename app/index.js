@@ -1,7 +1,15 @@
 var http       = require('https');
 var express    = require('express');
 var bodyParser = require('body-parser');
-var $          = require('../jQuery');
+var $;
+require("jsdom").env("", function(err, window) {
+	if (err) {
+		console.error(err);
+		return;
+	}
+
+	$ = require("jquery")(window);
+});
 var request    = require('request');
 var app = express();
 
