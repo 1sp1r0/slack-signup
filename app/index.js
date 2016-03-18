@@ -32,7 +32,7 @@ app.use(function (err, req, res, next) {
 
 // listen
 app.listen(process.env.PORT || 5000, function () {
-  console.log('App listening on port 3000!');
+  console.log('App listening on port 5000!');
 });
 
 // --------------------------------
