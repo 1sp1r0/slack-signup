@@ -9,6 +9,7 @@ require("jsdom").env("", function(err, window) {
 	$ = require("jquery")(window);
 });
 var request    = require('request');
+
 // --------------------------------
 // API url variables
 
@@ -83,14 +84,19 @@ module.exports = {
                       var tf_obj       = JSON.parse(tf_json);
                       var tf_res       = tf_obj.responses;
                       var res_length   = Object.keys(tf_res).length;
-                      for (var i=0; i < res_length; i++) {
-                        var new_user = new user();
-                        new_user.first_name = tf_res[i].answers["textfield_18214586"];
-                        new_user.email = tf_res[i].answers["email_18214588"];
-                        new_invites.push(new_user);
-                      };
-                      console.log(new_invites); // test
-                      send_invites();
+                      if (res_length != 0) {
+                        for (var i=0; i < res_length; i++) {
+                          var new_user = new user();
+                          new_user.first_name = tf_res[i].answers["textfield_18214586"];
+                          new_user.email = tf_res[i].answers["email_18214588"];
+                          new_invites.push(new_user);
+                        };
+                        console.log(new_invites); // test
+                        send_invites();
+                      }
+                      else {
+                        console.log("No signups made in the last 30 minutes!");
+                      }
                     });
                     res.send("Parsed Typeform!");
                   }
