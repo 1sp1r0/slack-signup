@@ -6,7 +6,7 @@ Online signup page for [Slack](https://slack.com/) via [Typeform](https://www.ty
 Inspired by https://levels.io/slack-typeform-auto-invite-sign-ups/
 
 I will make a node version of slack-typeform signup web app
-
+*UPDATE: Back end works! Need front end now :rocket:*
 
 # Table of Contents
 1. [Usage](#usage)
@@ -22,10 +22,8 @@ Found a bug? Please create an issue here on GitHub!
 Released under the [MIT license](https://github.com/jumbosushi/slack-signup/blob/master/LICENCE)
 
 # Todo
-1. Find out how to make POST request @ L79
-
-```javascript
-app.post('/invite', exports.send_invites);
-```
-
-2. How to make api calls automatically on every time interval
+- [x] Make GET request every 30 min based on the time zone
+- [x] Routing & Backend works!
+- [ ] Make jasmine unit tests
+- [ ] Make test pass on Travic CI
+- [ ] Implement front end
