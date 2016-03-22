@@ -1,6 +1,8 @@
 # slack-signup
 [![BuildStatus](https://travis-ci.org/jumbosushi/slack-signup.svg?branch=master)](https://travis-ci.org/jumbosushi/slack-signup)
 
+![Don't sue me Slack & Typeform](http://i.imgur.com/k4DhqWb.jpg)
+
 Online signup page for [Slack](https://slack.com/) via [Typeform](https://www.typeform.com/)!
 
 Inspired by https://levels.io/slack-typeform-auto-invite-sign-ups/
@@ -23,6 +25,7 @@ Released under the [MIT license](https://github.com/jumbosushi/slack-signup/blob
 
 # Todo
 - [x] Make GET request every 30 min based on the time zone
+- [x] Parse only the latest Typeform data
 - [x] Routing & Backend works!
 - [ ] Make jasmine unit tests
 - [ ] Make test pass on Travic CI
