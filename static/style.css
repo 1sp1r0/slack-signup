@@ -1,0 +1,29 @@
+@import url('http://fonts.googleapis.com/css?family=Lato');
+body {
+  font-family: Lato;
+}
+
+#input-form {
+  border-width: 6px;
+  border-style: solid;
+  border-color: #6FCBDD #EAA822 #E11665 #38BA91;
+  border-radius: 10%;
+  padding: 10px;
+  height: 200px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#input-form form {
+  font-size: 18;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+#input-form form input {
+  font-size: 18;
+}
+#input-form p {
+  margin-right: 50px;
+  margin-left: 50px;
+}
