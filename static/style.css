@@ -3,6 +3,12 @@ body {
   font-family: Lato;
 }
 
+#direction {
+  height: 200px;
+  width: 400px;
+  margin: 0 auto;
+}
+
 #input-form {
   border-width: 6px;
   border-style: solid;
@@ -22,6 +28,7 @@ body {
 
 #input-form form input {
   font-size: 18;
+  font-family: Lato;
 }
 #input-form p {
   margin-right: 50px;
