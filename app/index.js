@@ -4,14 +4,16 @@ var bodyParser = require('body-parser');
 var myApi 		 = require('./api');
 var app        = express();
 var path       = require('path');
+var connect    = require('connect');
+var app_connect    = connect();
 
 // -----------------------------
 // Routing
 
 app.use(function() {
-    app.use(express.static(path.join(__dirname, 'static')));
-    app.use(express.bodyParser());
-    app.use(express.logger("short"));
+    app.use(express.static('static'));
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
 });
 
 // routing for parsing typeform
@@ -19,7 +21,8 @@ app.get('/tf', myApi.parse_typeform);
 
 // Landing url
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../static/index.html'));
+  console.log("__dirname");
+  res.sendFile(__dirname + '../static/index.html');
 });
 
 // error handler
@@ -30,5 +33,5 @@ app.use(function (err, req, res, next) {
 
 // listen
 app.listen(process.env.PORT || 3000, function () {
-  console.log('App listening on port 000!');
+  console.log('App listening on port 3000!');
 });

@@ -3,6 +3,10 @@ body {
   font-family: Lato;
 }
 
+h1 {
+  text-align: center;
+}
+
 #direction {
   height: 200px;
   width: 400px;
