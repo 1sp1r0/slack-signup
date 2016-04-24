@@ -4,9 +4,6 @@ var bodyParser = require('body-parser');
 var myApi 		 = require('./api');
 var app        = express();
 var path       = require('path');
-var connect    = require('connect');
-var app_connect    = connect();
-
 // -----------------------------
 // Routing
 
