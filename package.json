@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/jumbosushi/slack-signup#readme",
   "dependencies": {
-    "jquery": "2.2.2",
+    "jquery": "3.5.1",
     "jasmine-node": "^1.14.5",
     "request": "^2.69.0",
     "express":"*",
